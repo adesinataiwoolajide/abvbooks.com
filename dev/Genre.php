@@ -72,13 +72,22 @@
 			return $query->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        public function getSingleGenre()
+        public function getSingleGenre($genre_id)
 		{
 			$db = Database::getInstance()->getConnection();
             $query = $db->prepare("SELECT * FROM genre WHERE genre_id=:genre_id");
             $query->bindValue(":genre_id", $genre_id);
 			$query->execute();
 			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function getSingleGenreType($genre_id)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM genre WHERE genre_id=:genre_id");
+            $query->bindValue(":genre_id", $genre_id);
+			$query->execute();
+			return $query->fetch();
 		}
     }
 

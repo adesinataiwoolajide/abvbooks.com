@@ -108,11 +108,11 @@
 <script>
 	$(function()
 	{
-		$("input[type='button']").one('click',function(e){
+		$("input[type='submit']").one('click',function(e){
 
 		   if(($("input[type='text']").val())!=''){
 			   $('#theform').submit();
-			   $("input[type='button']").val('Please wait....');
+			   $("input[type='submit']").val('Please wait....');
 			     e.preventDefault();
 		   }else{
 		     alert('empty input');

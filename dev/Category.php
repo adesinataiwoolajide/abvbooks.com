@@ -66,7 +66,7 @@
         public function getAllCategory()
 		{
 			$db = Database::getInstance()->getConnection();
-			$query = $db->prepare("SELECT * FROM products_category ORDER BY category_id ASC");
+			$query = $db->prepare("SELECT * FROM products_category ORDER BY category_name ASC");
 			$query->execute();
 			return $query->fetchAll(PDO::FETCH_ASSOC);
         }

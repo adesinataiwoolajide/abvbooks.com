@@ -1,54 +1,129 @@
 <?php
-session_start();
-$returnUrl = $_SERVER['HTTP_REFERER'];
 require_once("../../dev/autoload.php");
-$product = new Products();
-$product->sku = $_GET['sku'];
-if(isset($_GET['sizes'])){
-	$sizes = $_GET['sizes'];
-}else{
-	$sizes = "";
-}
+require_once("../../dev/general/all_purpose_class.php");
+require_once("../../connection/connection.php");
+$all_purpose = new all_purpose($db);
+$product = new Product;
+$return = $_SERVER['HTTP_REFERER'];
+    session_start();
+    if(isset($_GET['slug'])){
+		$slug = $_GET['slug'];
+		$_SESSION['slug']  = $slug;
+		$_SESSION['amount'] = $_GET['amount'];
+		$productDetails = $product->getSingleProduct($slug);
+		$_SESSION['quantity'] = $_GET['quantity'];
 
-//get product details from db
-$productDetails = $product->getSingleProductWithSku();
-$price = isset($productDetails['coopco_price']) && $productDetails['coopco_price'] != 0 ? $productDetails['coopco_price'] : $productDetails['amount'];
-//create array from product details
-$itemArray = array(
-	$productDetails["pcode"] => array(
-		'name'=> $productDetails["pname"], 
-		'code'=> $productDetails["pcode"], 
-		'price'=> $price,
-		'quantity' => 1,
-		'wght' => $productDetails["wght"] ?? 0,
-		'sizes' => array($sizes)
-	)
-);
+		$itemArray = array(
+			$productDetails["slug"] => array(
+				'slug' => $_SESSION['slug'],
+				'name'=> $productDetails["product_name"], 
+				'amount'=> $_SESSION['amount'],
+				'quantity' => $_SESSION['quantity'] ,
+			)
+		);
 
-
-
-
-if(!empty($_SESSION['cart'])){
-
-	if(in_array($productDetails["pcode"], array_keys($_SESSION['cart']))){		
-		foreach(($_SESSION['cart']) as $k => $v){
+		if(!empty($_SESSION['cart'])){
 			
-			if($_SESSION['cart'][$k]['code'] == $productDetails['pcode']){
-				if($_SESSION['cart'][$k]['sizes'] == $sizes){
-					$_SESSION['cart'][$k]['quantity'] += 1 ;
-				}else{
-					$_SESSION['cart'][$k]['quantity'] += 1 ;
-					array_push($_SESSION['cart'][$k]['sizes'], $sizes);
+			if(in_array($slug, array_keys($_SESSION['cart']))){		
+				foreach(($_SESSION['cart']) as $k => $v){
+					
+					if($_SESSION['cart'][$k]['slug'] == $productDetails['slug']){
+						if($_SESSION['cart'][$k]['quantity'] == $_SESSION['quantity']){
+							$_SESSION['cart'][$k]['quantity'] += 1 ;
+						}else{
+							$_SESSION['cart'][$k]['quantity'] += 0;
+						}
+					}
 				}
+			}else{
+				$_SESSION["cart"] += $itemArray;	
 			}
+		}else{
+			$_SESSION["cart"] = $itemArray;
 		}
+		$_SESSION['success'] = strtoupper(ucwords($productDetails["product_name"])." added to your shopping bag");
+		$all_purpose->redirect($return);
 	}else{
-		$_SESSION["cart"] += $itemArray;
-		//$_SESSION["cart"] = array_merge($_SESSION["cart"],$itemArray);
+		$_SESSION['error'] = "Please Click On Your Preferred Product";
+		$all_purpose->redirect($return);
 	}
-}else{
-	$_SESSION["cart"] = $itemArray;
-}
-$_SESSION['success'] = ucwords($productDetails["pname"])." added to your shopping bag";
-General::redirectTo($returnUrl);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //    $sku = $_GET['sku'];
+ //    $quantity = $_GET['quantity'];
+ //    $amount = $_GET['amount'];
+
+	// $productArray = array(
+	// 	$_GET['sku'] => [
+	//         'sku' => $_GET['sku'],
+	//         'name' => $_GET['name'],
+	//         'amount' => $_GET['amount'],
+	//         'quantity' => $_GET['quantity'],
+	//         //'size' => $_GET['quantity']
+ //        ] 
+ //   );
+
+ //    if(!empty($_SESSION['cart'])){
+			
+	// 	if(in_array($sku, array_keys($_SESSION['cart']))){		
+	// 		foreach(($_SESSION['cart']) as $k => $v){
+	// 			if($_SESSION['cart'][$k]['sku'] == $sku){
+	// 				if($_SESSION['cart'][$k]['sku'] == $sku){
+	// 					$_SESSION['cart'][$k]['quantity'] += 1 ;
+	// 					$_SESSION['total'] += $quantity * $amount;
+	// 				}else{
+	// 					$_SESSION['cart'][$k]['quantity'] += 0;
+	// 					$_SESSION['total'] += 0 * $amount;
+	// 				}
+	// 			}
+				
+	// 		}
+	// 	}else{
+	// 		$_SESSION["cart"] += $productArray;	
+	// 	}
+	// }else{
+	// 	$_SESSION["cart"] = $productArray;
+	// }  
 ?>

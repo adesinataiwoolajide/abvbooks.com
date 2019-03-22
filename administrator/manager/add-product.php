@@ -24,14 +24,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i> Please Fill The Below Form To Add New Category </div>
+                    <div class="card-header"><i class="fa fa-table"></i> Please Fill The Below Form To Add New Product </div>
                     <div class="card-body">
                         <form action="process-add-product.php" method="POST" enctype="multipart/form-data">
                             
                             <div class="form-group row ">
                                 <div class="col-sm-6">
                                 	<label for="input-6">Product Image </label>
-                                    <input type="file" class="form-control form-control-rounded" name="category_name" required 
+                                    <input type="file" class="form-control form-control-rounded" name="image" required 
                                     >
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>
@@ -81,7 +81,7 @@
 
                                 <div class="col-sm-6">
                                 	<label for="input-6">Category Name </label>
-                                    <select class="form-control form-control-rounded" name="type_id" required>
+                                    <select class="form-control form-control-rounded" name="category_id" required>
                                     	<option value="">-- Select Category --</option>
                                     	<option value=""></option><?php
                                     	foreach ($category->getAllCategory() as $listType) { ?>
@@ -94,8 +94,8 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                	<label for="input-6">Author Name </label>
-                                    <select class="form-control form-control-rounded" name="category_id" required>
+                                	<label for="input-6">Supplier Name </label>
+                                    <select class="form-control form-control-rounded" name="author_id" required>
                                     	<option value="">-- Select Author --</option>
                                     	<option value=""></option><?php
                                     	foreach ($author->getAllAuthor() as $listType) { ?>
@@ -108,8 +108,8 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                	<label for="input-6">Publisher Name </label>
-                                    <select class="form-control form-control-rounded" name="publisher" required>
+                                	<label for="input-6">Manufacturer Name </label>
+                                    <select class="form-control form-control-rounded" name="publisher_id" required>
                                     	<option value="">-- Select Publisher --</option>
                                     	<option value=""></option><?php
                                     	foreach ($publisher->getAllPublisher() as $listType) { ?>
@@ -138,11 +138,11 @@
                                 	<label for="input-6">Product Edition</label>
                                     <input type="text" class="form-control form-control-rounded" name="edition" 
                                     placeholder="Enter The Edition">
-                                    <span style="color: red">** This Field is Required **</span>     
+                                    <span style="color: green">** This Field is Optional **</span>     
                                 </div>     
                                 <div class="col-sm-12">
                                 	<label for="input-12">Product Description </label>
-                                    <textarea class="form-control form-control-rounded" name="amount" required 
+                                    <textarea class="form-control form-control-rounded" name="description" required 
                                     placeholder="Enter The Product Description"> </textarea>
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>    
@@ -150,7 +150,7 @@
                                 
                                                        
                                 <div class="col-sm-12" align="center">
-                                    <button type="submit" class="btn btn-success btn-lg btn-block" name="add-category">ADD THE PRODUCT DETAILS</button>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block" name="add-product">ADD THE PRODUCT DETAILS</button>
                                 </div>   
                             </div>
                         </form>

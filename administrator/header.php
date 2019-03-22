@@ -61,7 +61,7 @@ if(!isset($_SESSION['id'])){
                 <div id="user-dropdown" class="collapse">
                     <ul class="user-setting-menu">
                         <li><a href=""><i class="icon-user"></i>  My Profile</a></li>
-                        <li><a href=""><i class="icon-settings"></i> Setting</a></li>
+                        <li><a href=""><i class="icon-user"></i>  My Activity Log</a></li>
                         <li><a href="../log-out.php"><i class="icon-power"></i> Logout</a></li>
                     </ul>
                 </div>
@@ -70,10 +70,10 @@ if(!isset($_SESSION['id'])){
                 <li class="sidebar-header">MAIN NAVIGATION</li>
                 <li><a href="./" class="waves-effect"><i class="zmdi zmdi-home text-danger"></i> <span>Dashboard</span></a></li>
                 <li><a href="category.php" class="waves-effect"><i class="fa fa-cogs text-success"></i> <span>Product Category</span></a></li>
-                <li><a href="author.php" class="waves-effect"><i class="fa fa-user-circle-o text-danger"></i> <span>Book Authors</span></a></li>
-                <li><a href="publisher.php" class="waves-effect"><i class="fa fa-briefcase text-success"></i> <span>Book Publishers</span></a></li>
-                <li><a href="type.php" class="waves-effect"><i class="fa fa-sitemap text-danger"></i> <span>Book Types</span></a></li>
-                <li><a href="genre.php" class="waves-effect"><i class="fa fa-sitemap text-danger"></i> <span>Book Genre</span></a></li>
+                <li><a href="type.php" class="waves-effect"><i class="fa fa-sitemap text-danger"></i> <span>Product Types</span></a></li>
+                <li><a href="genre.php" class="waves-effect"><i class="fa fa-sitemap text-danger"></i> <span>Product Sub Type</span></a></li>
+                <li><a href="author.php" class="waves-effect"><i class="fa fa-user-circle-o text-danger"></i> <span>Product Authors</span></a></li>
+                <li><a href="publisher.php" class="waves-effect"><i class="fa fa-briefcase text-success"></i> <span>Product Manufacturer</span></a></li>
 
                 <li>
                     <a href="" class="waves-effect">
@@ -82,7 +82,7 @@ if(!isset($_SESSION['id'])){
                     </a>
                     <ul class="sidebar-submenu">
                         <li><a href="add-product.php"><i class="zmdi zmdi-long-arrow-right"></i> Add Products</a></li>
-                        <li><a href="index2.html"><i class="zmdi zmdi-long-arrow-right"></i> View All Products</a></li>
+                        <li><a href="view-products.php"><i class="zmdi zmdi-long-arrow-right"></i> View All Products</a></li>
                     </ul>
                 </li>
                 <li>
@@ -91,22 +91,27 @@ if(!isset($_SESSION['id'])){
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="index.html"><i class="zmdi zmdi-long-arrow-right"></i> Publish Products</a></li>
-                        <li><a href="index2.html"><i class="zmdi zmdi-long-arrow-right"></i> Un-Publish Products</a></li>
+                        <li><a href=""><i class="zmdi zmdi-long-arrow-right"></i> Published Products</a></li>
+                        <li><a href=""><i class="zmdi zmdi-long-arrow-right"></i> Publish Products</a></li>
+                        <li><a href=""><i class="zmdi zmdi-long-arrow-right"></i> Un-Publish Products</a></li>
                     </ul>
                 </li>
                 <li><a href="payments.php" class="waves-effect"><i class="fa fa-money text-danger"></i> <span>Payment</span></a></li>
                 <li><a href="order.php" class="waves-effect"><i class="fa fa-shopping-cart text-info"></i> <span>Customer Orders</span></a></li>
-                <li><a href="order.php" class="waves-effect"><i class="fa fa-users text-success"></i> <span>Users</span></a></li>
-                <li><a href="order.php" class="waves-effect"><i class="fa fa-cloud text-danger"></i> <span>Activity Log</span></a></li>
+                <li><a href="users.php" class="waves-effect"><i class="fa fa-users text-success"></i> <span>Users</span></a></li>
+                <li><a href="my_details.php" class="waves-effect"><i class="fa fa-users text-success"></i> <span>My Details</span></a></li>
+                <li><a href="my_activity_log.php" class="waves-effect"><i class="fa fa-cloud text-danger"></i> <span>My Activity Log</span></a>
+                </li>
+                <li><a href="activity_log.php" class="waves-effect"><i class="fa fa-cloud text-danger"></i> <span>Activity Log</span></a></li>
+
                 <!-- <li>
                     <a href="" class="waves-effect">
                         <i class="zmdi zmdi-view-dashboard"></i> <span>Products</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="index.html"><i class="zmdi zmdi-long-arrow-right"></i> Ecommerce</a></li>
-                        <li><a href="index2.html"><i class="zmdi zmdi-long-arrow-right"></i> Property Listings</a></li>
+                        <li><a href=""><i class="zmdi zmdi-long-arrow-right"></i> Ecommerce</a></li>
+                        <li><a href=""><i class="zmdi zmdi-long-arrow-right"></i> Property Listings</a></li>
                         <li><a href="dashboard-service-support.html"><i class="zmdi zmdi-long-arrow-right"></i> Services & Support</a></li>
                         <li><a href="dashboard-logistics.html"><i class="zmdi zmdi-long-arrow-right"></i> Logistics</a></li>
                     </ul>

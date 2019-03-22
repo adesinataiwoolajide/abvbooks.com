@@ -89,6 +89,8 @@
 			$fetch = $query->fetchAll(PDO::FETCH_ASSOC);
 			return $fetch;	
 		}
+
+		
     }
 
 ?>

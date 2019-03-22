@@ -67,7 +67,7 @@
 
     </script>
 <?php 
-if(isset($_SESSION['success'])){
+    if(isset($_SESSION['success'])){
         $message = $_SESSION['success']; ?>
         <script type="text/javascript">
             new Toast({ message: '<?php echo $message; ?>', type: 'success' });

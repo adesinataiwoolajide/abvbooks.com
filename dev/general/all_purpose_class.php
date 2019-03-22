@@ -82,5 +82,10 @@
 		
 		}
 
+		public static function generateRandomHash($length)
+		{
+			return strtoupper(substr(md5(uniqid(rand())), 0, (-32 + $length)));
+		}	
+
 	}
 ?>
