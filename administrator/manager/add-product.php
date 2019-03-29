@@ -5,7 +5,7 @@
 	$genre = new Genre;
 	$author = new Author;
 	$publisher = new Publisher;
-	
+	$weight = new Weight;
 ?>
 <div class="clearfix"></div>
 	
@@ -31,7 +31,7 @@
                             <div class="form-group row ">
                                 <div class="col-sm-6">
                                 	<label for="input-6">Product Image </label>
-                                    <input type="file" class="form-control form-control-rounded" name="image" required 
+                                    <input type="file" class="form-control form-control-rounded" name="image" multiple required 
                                     >
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>
@@ -43,43 +43,7 @@
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>
 
-                                <!-- <div class="col-sm-6">
-                                    <select class="form-control form-control-rounded" name="genre" onchange="showUser(this.value)" required>
-                                    	<option value="">-- Select Genre --</option>
-                                    	<option value=""></option><?php
-                                    	foreach ($genre->getAllGenre() as $listType) { ?>
-                                    		<option value="<?php echo $listType['type_id'] ?>">
-                                    			<?php echo $listType['genre_name'] ?>	
-                                    		</option><?php
-                                    	} ?>
-                                    </select>
-                                    <span style="color: red">** This Field is Required **</span>     
-                                </div>
-                                <div class="col-sm-6" id="txtHint"></div> -->
 								<div class="col-sm-6">
-									<label for="input-6">Product Type </label>
-                                    <select class="form-control form-control-rounded" name="type_id" id="" required onchange="showGenre(this.value)" required>>
-                                    	<option value="">-- Select Type --</option>
-                                    	<option value=""></option><?php
-                                    	foreach ($type->getAllProductType() as $listType) { ?>
-                                    		<option value="<?php echo $listType['type_id'] ?>">
-                                    			<?php echo $listType['type_name'] ?>	
-                                    		</option><?php
-                                    	} ?>
-                                    </select>
-                                    <span style="color: red">** This Field is Required **</span>     
-                                </div>
-
-                                <div class="col-sm-6" id="txtHint2">
-                                	<label for="input-6">Genre Name </label>
-                                	<select class="form-control form-control-rounded" name="genre_id" id="" required>
-                                		<option value="">-- Select Genre --</option>
-                                	</select>
-                                	<span style="color: green">** This Field is Autoload **</span>  
-                                </div>
-                                
-
-                                <div class="col-sm-6">
                                 	<label for="input-6">Category Name </label>
                                     <select class="form-control form-control-rounded" name="category_id" required>
                                     	<option value="">-- Select Category --</option>
@@ -92,6 +56,69 @@
                                     </select>
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>
+
+								<div class="col-sm-6">
+                                	<label for="input-6">Product Amount </label>
+                                    <input type="number" class="form-control form-control-rounded" name="amount" required 
+                                    placeholder="Enter The Amount">
+                                    <span style="color: red">** This Field is Required **</span>     
+                                </div> 
+
+								<div class="col-sm-6">
+									<label for="input-6">Product Type </label>
+                                    <select class="form-control form-control-rounded" name="type_id" id="" required onchange="showGenre(this.value)" required>
+                                    	<option value="">-- Select Type --</option>
+                                    	<option value=""></option><?php
+                                    	foreach ($type->getAllProductType() as $listType) { ?>
+                                    		<option value="<?php echo $listType['type_id'] ?>">
+                                    			<?php echo $listType['type_name'] ?>	
+                                    		</option><?php
+                                    	} ?>
+                                    </select>
+                                    <span style="color: red">** This Field is Required **</span>     
+                                </div>
+
+                                <div class="col-sm-6" id="txtHint2">
+                                	<label for="input-6">Sub Type </label>
+                                	<select class="form-control form-control-rounded" name="genre_id" id="" required>
+                                		<option value="">-- Select Sub Type --</option>
+                                	</select>
+                                	<span style="color: green">** This Field is Autoload **</span>  
+                                </div>
+
+								<div class="col-sm-6">
+									<label for="input-6">Product Weight </label>
+                                    <select class="form-control form-control-rounded" name="weight_name" id="" required onchange="showAmount(this.value)" required>
+                                    	<option value="">-- Select Weight --</option>
+                                    	<option value=""></option>
+                                    	<?php foreach($weight->getAllProductWeight() as $roll) { ?>
+											<option value="<?php echo $roll['weight_id'] ?>"><?php echo $roll['weight_name']; ?></option>
+										<?php } ?>
+                                    </select>
+                                    <span style="color: red">** This Field is Required **</span>     
+                                </div>
+								
+								<div class="col-sm-6" id="txtHint3">
+                                	<label for="input-6">Weight Amount </label>
+                                	<select class="form-control form-control-rounded" name="weight_id" required>
+                                		<option value="">-- Select Amount --</option>
+                                	</select>
+                                	<span style="color: green">** This Field is Autoload **</span>  
+                                </div>
+
+								<div class="col-sm-6">
+                                	<label for="input-6">Product Quantity</label>
+                                    <input type="number" class="form-control form-control-rounded" name="quantity" required 
+                                    placeholder="Enter The Quantity">
+                                    <span style="color: red">** This Field is Required **</span>     
+                                </div>
+
+                                <div class="col-sm-6">
+                                	<label for="input-6">Product Edition</label>
+                                    <input type="text" class="form-control form-control-rounded" name="edition" 
+                                    placeholder="Enter The Edition">
+                                    <span style="color: green">** This Field is Optional **</span>     
+                                </div>    
 
                                 <div class="col-sm-6">
                                 	<label for="input-6">Supplier Name </label>
@@ -110,7 +137,7 @@
                                 <div class="col-sm-6">
                                 	<label for="input-6">Manufacturer Name </label>
                                     <select class="form-control form-control-rounded" name="publisher_id" required>
-                                    	<option value="">-- Select Publisher --</option>
+                                    	<option value="">-- Select Manufacturer --</option>
                                     	<option value=""></option><?php
                                     	foreach ($publisher->getAllPublisher() as $listType) { ?>
                                     		<option value="<?php echo $listType['publisher_id'] ?>">
@@ -121,34 +148,14 @@
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>
 
-                                <div class="col-sm-6">
-                                	<label for="input-6">Product Quantity</label>
-                                    <input type="number" class="form-control form-control-rounded" name="quantity" required 
-                                    placeholder="Enter The Quantity">
-                                    <span style="color: red">** This Field is Required **</span>     
-                                </div>
-
-                                <div class="col-sm-6">
-                                	<label for="input-6">Product Amount </label>
-                                    <input type="number" class="form-control form-control-rounded" name="amount" required 
-                                    placeholder="Enter The Amount">
-                                    <span style="color: red">** This Field is Required **</span>     
-                                </div> 
-                                <div class="col-sm-6">
-                                	<label for="input-6">Product Edition</label>
-                                    <input type="text" class="form-control form-control-rounded" name="edition" 
-                                    placeholder="Enter The Edition">
-                                    <span style="color: green">** This Field is Optional **</span>     
-                                </div>     
+                                 
                                 <div class="col-sm-12">
                                 	<label for="input-12">Product Description </label>
                                     <textarea class="form-control form-control-rounded" name="description" required 
                                     placeholder="Enter The Product Description"> </textarea>
                                     <span style="color: red">** This Field is Required **</span>     
                                 </div>    
-
-                                
-                                                       
+                    
                                 <div class="col-sm-12" align="center">
                                     <button type="submit" class="btn btn-success btn-lg btn-block" name="add-product">ADD THE PRODUCT DETAILS</button>
                                 </div>   
@@ -232,6 +239,28 @@
 		        }
 		    };
 		    xmlhttp.open("GET","load_new.php?genre_id="+str,true);
+		    xmlhttp.send();
+		}
+	}
+
+	function showAmount(str) {
+		if (str == "") {
+		    document.getElementById("txtHint3").innerHTML = "";
+		    return;
+		} else { 
+		    if (window.XMLHttpRequest) {
+		        // code for IE7+, Firefox, Chrome, Opera, Safari
+		        xmlhttp = new XMLHttpRequest();
+		    } else {
+		        // code for IE6, IE5
+		        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    xmlhttp.onreadystatechange = function() {
+		        if (this.readyState == 4 && this.status == 200) {
+		            document.getElementById("txtHint3").innerHTML = this.responseText;
+		        }
+		    };
+		    xmlhttp.open("GET","load_amount.php?weight_id="+str,true);
 		    xmlhttp.send();
 		}
 	}

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../../dev/autoload.php");
+require_once("../../connection/connection.php");
 require_once("../../vendor/autoload.php");
 require_once '../../dev/general/all_purpose_class.php';
 $all_purpose = new all_purpose($db);
@@ -16,7 +17,7 @@ if(!isset($_SESSION['id'])){ ?>
 
     $_SESSION['paystackReference'] = bin2hex(random_bytes(10));
     $order->deleteOrders($_SESSION['transactionId']); // delete instance of this order
-    $saveOrder = $order->saveOrder($_SESSION['reg_number'], $_SESSION['transactionId'], $_SESSION['paystackReference'], 0, 0, $_POST['subtotal'], $_POST['shipping_charge'], $_POST['total'], $_SESSION['slug']); //save order
+    $saveOrder = $order->saveOrder($_SESSION['reg_number'], $_SESSION['transactionId'], $_SESSION['paystackReference'], 1, 1, $_POST['subtotal'], $_POST['shipping_charge'], $_POST['total'], $_SESSION['slug']); //save order
 
     if($saveOrder){
         foreach($_SESSION['cart'] as $key){
@@ -24,6 +25,8 @@ if(!isset($_SESSION['id'])){ ?>
             $order->getQuantity($key['quantity']);
             $order->getAmount($key['amount']);
             $order->saveOrderDetails($_SESSION['transactionId'], $key['slug'], $key['quantity'], $key['amount']);
+
+            //REMOVE THE ORDER HERE
         }
 
         $_SESSION['orderAmount'] = $_POST['total'];

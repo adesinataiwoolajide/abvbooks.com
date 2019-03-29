@@ -13,13 +13,13 @@ try{
         $total = count($type->checkIfAlreadyAdded($type_name));
 
         if($total>0){
-            $_SESSION['error']= "You Have Added $type_name Book Type Before";
+            $_SESSION['error']= "You Have Added $type_name Book Product Before";
             $all_purpose->redirect($return);
         }else{
             if($type->createProductType($type_name)){
                 $action ="Added $type_name  to the Type List";
                 $his = $all_purpose->getUserDetailsandAddActivity($email, $action);
-                $_SESSION['success'] = "You Have Added $type_name to The Book Types Successfully";
+                $_SESSION['success'] = "You Have Added $type_name to The Product Types Successfully";
                 $all_purpose->redirect($return);
             }else{
                 $_SESSION['error'] = "Network Failure, Please Try Again Later";
@@ -28,7 +28,7 @@ try{
         }
         
     }else{
-        $_SESSION['error'] = "Please Fill The Form Below To Add The Book Type Details";
+        $_SESSION['error'] = "Please Fill The Form Below To Add The Product Type Details";
         $all_purpose->redirect($return);
     }
 }catch(PDOException $e){

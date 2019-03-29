@@ -33,8 +33,8 @@
         <li><a href="category.php" class="waves-effect"><i class="fa fa-cogs text-success"></i> <span>Product Category</span></a></li>
         <li><a href="category.php" class="waves-effect"><i class="fa fa-cogs text-success"></i> <span>Product Category</span></a></li>
         <li><a href="products.php" class="waves-effect"><i class="fa fa-book text-info"></i> <span>Products</span></a></li>
+        <li><a href="view-order.php" class="waves-effect"><i class="fa fa-shopping-cart text-info"></i> <span>Customer Orders</span></a></li>
         <li><a href="paymants.php" class="waves-effect"><i class="fa fa-money text-info"></i> <span>Payment</span></a></li>
-        <li><a href="order.php" class="waves-effect"><i class="fa fa-shopping-cart text-info"></i> <span>Customer Orders</span></a></li>
         <li><a href="order.php" class="waves-effect"><i class="fa fa-users text-info"></i> <span>Users</span></a></li>
         <li><a href="order.php" class="waves-effect"><i class="fa fa-cloud text-info"></i> <span>Activity Log</span></a></li>
         <!-- <li>

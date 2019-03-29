@@ -11,7 +11,7 @@
             <div class="col-sm-9">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="./">Home</a></li>
-                    <li class="breadcrumb-item"><a href="category.php">Add Book category</a></li>
+                    <li class="breadcrumb-item"><a href="category.php">Add Category</a></li>
                     <li class="breadcrumb-item active" aria-current="page">List of Saved Product Categories</li>
                 </ol>
             </div>
@@ -53,8 +53,8 @@
 		            
 		            	<div class="card-header"><i class="fa fa-table"></i> List of Saved Product Categories</div>
 	            		<div class="card-body">
-	              			<div class="table-responsive">
-	              				<table id="default-datatable" class="table table-bordered">
+							<div class="table-responsive">
+								<table id="default-datatable" class="table table-bordered">
 	              					<thead>
 					                    <tr>
 					                        <th>S/N</th>
@@ -65,7 +65,7 @@
 					                <tfoot>
 					                    <tr>
 											<th>S/N</th>
-											<<th>Category Name</th>
+											<th>Category Name</th>
 					                    </tr>
 					                </tfoot>
 					                <tbody>
@@ -75,8 +75,8 @@
 											$category_name=$listcategory['category_name']; ?>
 											<tr>
 												<td><?php echo $number; ?>
-													<a href="delete-category.php?category_name=<?php echo $category_name ?>&&category_id=<?php echo $category_id ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-													<a href="edit-category.php?category_name=<?php echo $category_name ?>&&category_id=<?php echo $category_id ?>" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+													<a href="delete-category.php?category_name=<?php echo $category_name ?>&&category_id=<?php echo $category_id ?>" class="btn btn-danger" onclick="return(confirmToDelete());"><i class="fa fa-trash-o"></i></a>
+													<a href="edit-category.php?category_name=<?php echo $category_name ?>&&category_id=<?php echo $category_id ?>" class="btn btn-success" onclick="return(confirmToEdit());"><i class="fa fa-pencil"></i></a>
 												</td>
 												<td><?php echo $category_name ?></td>
 												
@@ -90,6 +90,7 @@
 	              			</div>
 	              		</div><?php
 	             	} ?>
+					 
               	</div>
             </div>
         </div>
@@ -98,32 +99,7 @@
     <!-- End container-fluid-->
     
 </div><!--End content-wrapper-->
-<!-- <script>       
-	$(':submit').click(function () {
-		$(this).attr('value', 'Please wait...');
-		$(this).attr('disabled', 'true');
-	}); 
-</script>  -->
 
-<script>
-	$(function()
-	{
-		$("input[type='submit']").one('click',function(e){
-
-		   if(($("input[type='text']").val())!=''){
-			   $('#theform').submit();
-			   $("input[type='submit']").val('Please wait....');
-			     e.preventDefault();
-		   }else{
-		     alert('empty input');
-		   }
-	 });
-	});
-
-	$('form').submit(function(){
-    $('input[type=submit]', this).attr('disabled', 'disabled');
-});
-</script>   
 
 <?php
 	require_once('../footer.php');

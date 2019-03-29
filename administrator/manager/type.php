@@ -54,7 +54,7 @@
 		            	<div class="card-header"><i class="fa fa-table"></i> List of Saved Product Types</div>
 	            		<div class="card-body">
 	              			<div class="table-responsive">
-	              				<table id="example" class="table table-bordered">
+								<table id="default-datatable" class="table table-bordered">
 	              					<thead>
 					                    <tr>
 					                        <th>S/N</th>
@@ -77,8 +77,8 @@
 											$type_name=$listType['type_name'] ?>
 											<tr>
 												<td><?php echo $number; ?>
-													<a href="delete-type.php?type_name=<?php echo $type_name ?>&&type_id=<?php echo $type_id ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-													<a href="edit-type.php?type_name=<?php echo $type_name ?>&&type_id=<?php echo $type_id ?>" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+													<a href="delete-type.php?type_name=<?php echo $type_name ?>&&type_id=<?php echo $type_id ?>" class="btn btn-danger" onclick="return(confirmToDelete());"><i class="fa fa-trash-o"></i></a>
+													<a href="edit-type.php?type_name=<?php echo $type_name ?>&&type_id=<?php echo $type_id ?>" class="btn btn-success" onclick="return(confirmToEdit());"><i class="fa fa-pencil"></i></a>
 												</td>
 												<td><?php echo $type_name ?></td>
 												
@@ -100,7 +100,7 @@
     <!-- End container-fluid-->
     
 </div><!--End content-wrapper-->
-         
+       
         
 
 <?php

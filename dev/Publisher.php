@@ -37,12 +37,27 @@
 			
         }
         
-        public function updatePublisher()
+        public function updatePublisherwithImage($publisher_id, $publisher_name, $publisher_logo)
+		{
+			$db = Database::getInstance()->getConnection();
+			$query = $db->prepare("UPDATE publishers SET publisher_name=:publisher_name, publisher_logo=:publisher_logo WHERE publisher_id=:publisher_id ");
+            $query->bindValue(":publisher_name", $publisher_name);
+            $query->bindValue(":publisher_id", $publisher_id);
+            $query->bindValue(":publisher_logo", $publisher_logo);
+			if($query->execute()){
+				return true;
+			}else{
+                return false;
+            }
+			
+        }
+
+        public function updatePublisherwithOutImage($publisher_id, $publisher_name)
 		{
 			$db = Database::getInstance()->getConnection();
 			$query = $db->prepare("UPDATE publishers SET publisher_name=:publisher_name WHERE publisher_id=:publisher_id ");
-            $query->bindValue(":publisher_name", $this->publisher_name);
-            $query->bindValue(":publisher_id", $this->publisher_id);
+            $query->bindValue(":publisher_name", $publisher_name);
+            $query->bindValue(":publisher_id", $publisher_id);
 			if($query->execute()){
 				return true;
 			}else{
@@ -67,18 +82,44 @@
         public function getAllPublisher()
 		{
 			$db = Database::getInstance()->getConnection();
-			$query = $db->prepare("SELECT * FROM publishers ORDER BY publisher_id ASC");
+			$query = $db->prepare("SELECT * FROM publishers ORDER BY publisher_id desc");
+			$query->execute();
+			return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+         public function getAllPublisherSide()
+		{
+			$db = Database::getInstance()->getConnection();
+			$query = $db->prepare("SELECT * FROM publishers ORDER BY publisher_id desc LIMIT 0,15");
 			$query->execute();
 			return $query->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        public function getSinglePublisher()
+        public function getSinglePublisher($publisher_id)
 		{
 			$db = Database::getInstance()->getConnection();
             $query = $db->prepare("SELECT * FROM publishers WHERE publisher_id=:publisher_id");
             $query->bindValue(":publisher_id", $publisher_id);
 			$query->execute();
 			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function getSinglePublisherList($publisher_id)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM publishers WHERE publisher_id=:publisher_id");
+            $query->bindValue(":publisher_id", $publisher_id);
+			$query->execute();
+			return $query->fetch();
+		}
+
+		public function getSinglePublisherName($publisher_name)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM publishers WHERE publisher_name=:publisher_name");
+            $query->bindValue(":publisher_name", $publisher_name);
+			$query->execute();
+			return $query->fetch();
 		}
     }
 

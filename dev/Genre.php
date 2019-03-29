@@ -37,12 +37,13 @@
 			
         }
         
-        public function updateGenre()
+        public function updateGenre($genre_name, $genre_id, $type_id)
 		{
 			$db = Database::getInstance()->getConnection();
 			$query = $db->prepare("UPDATE genre SET genre_name=:genre_name, type_id=:type_id WHERE genre_id=:genre_id ");
-            $query->bindValue(":genre_name", $this->genre_name);
-            $query->bindValue(":genre_id", $this->genre_id);
+            $query->bindValue(":genre_name", $genre_name);
+            $query->bindValue(":genre_id", $genre_id);
+            $query->bindValue("type_id", $type_id);
 			if($query->execute()){
 				return true;
 			}else{
@@ -86,6 +87,15 @@
 			$db = Database::getInstance()->getConnection();
             $query = $db->prepare("SELECT * FROM genre WHERE genre_id=:genre_id");
             $query->bindValue(":genre_id", $genre_id);
+			$query->execute();
+			return $query->fetch();
+		}
+
+		public function getSingleGenreTypeName($genre_name)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM genre WHERE genre_name=:genre_name");
+            $query->bindValue(":genre_name", $genre_name);
 			$query->execute();
 			return $query->fetch();
 		}

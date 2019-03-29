@@ -16,8 +16,8 @@ try{
             $_SESSION['error']= "You Have Added $category_name  Before";
             $all_purpose->redirect($return);
         }else{
-            if($category->createcategory($category_name, $type_id)){
-                $action ="Added $category_name  to the Author List";
+            if($category->createcategory($category_name)){
+                $action ="Added $category_name to the Category List";
                 $his = $all_purpose->getUserDetailsandAddActivity($email, $action);
                 $_SESSION['success'] = "You Have Added $category_name Successfully";
                 $all_purpose->redirect($return);

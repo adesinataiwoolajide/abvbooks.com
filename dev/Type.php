@@ -36,12 +36,12 @@
 			
         }
         
-        public function updateProductType()
+        public function updateProductType($type_id, $type_name)
 		{
 			$db = Database::getInstance()->getConnection();
 			$query = $db->prepare("UPDATE product_type SET type_name=:type_name WHERE type_id=:type_id ");
-            $query->bindValue(":type_name", $this->type_name);
-            $query->bindValue(":type_id", $this->type_id);
+            $query->bindValue(":type_name", $type_name);
+            $query->bindValue(":type_id", $type_id);
 			if($query->execute()){
 				return true;
 			}else{
@@ -80,15 +80,33 @@
 			return $query->fetch();
 		}
 
+		public function getSingleBookTypes($typeid)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM product_type WHERE type_id=:typeid");
+            $query->bindValue(":typeid", $typeid);
+			$query->execute();
+			return $query->fetch();
+		}
+
 		public function getTypeGenre($type_id)
 		{
 			$db = Database::getInstance()->getConnection();
             $query = $db->prepare("SELECT * FROM genre WHERE type_id=:type_id");
             $query->bindValue(":type_id", $type_id);
 			$query->execute();
-			$fetch = $query->fetchAll(PDO::FETCH_ASSOC);
-			return $fetch;	
+			return $query->fetchAll(PDO::FETCH_ASSOC);	
 		}
+
+		public function getAllProductTypeDesc()
+		{
+			$db = Database::getInstance()->getConnection();
+			$query = $db->prepare("SELECT * FROM product_type ORDER BY type_id desc LIMIT 0,15");
+			$query->execute();
+			return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+		
 
 		
     }

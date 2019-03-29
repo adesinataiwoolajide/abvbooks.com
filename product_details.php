@@ -76,8 +76,8 @@
 									</div>
 								</div>
 	                            <input type="hidden" name="return" value="<?php $_SERVER['REQUEST_URI'] ?>">
-	                            <div class="wrap-butons">
-									<button type="submit" class="btn add-to-cart">Add to Cart
+	                            <div class="wrap-butons" align="center">
+									<button type="submit" class="btn btn-danger btn-lg btn-block active">Add to Cart
 	                                </button>
 									<!-- <a href="#" class="btn add-to-cart">Add to Cart</a> -->
 	                                <div class="wrap-btn">
@@ -245,7 +245,7 @@
 						<div class="widget-content">
 							<ul class="products"><?php 
 								$publisher_id = $details['publisher_id'];
-								foreach($product->getAllProductByPub($publisher_id) as $listPub){ ?>
+								foreach($product->getAllProductByPublis($publisher_id) as $listPub){ ?>
 									<li class="product-item">
 										<div class="product product-widget-style">
 											<div class="thumbnnail">
@@ -284,7 +284,7 @@
 							<div class="products slide-carousel owl-carousel style-nav-1 equal-container" data-items="5" data-loop="false" data-nav="true" data-dots="false" data-responsive='{"0":{"items":"1"},"480":{"items":"2"},"768":{"items":"3"},"992":{"items":"3"},"1200":{"items":"5"}}' >
                                 <?php 
                                 $genre_id = $details['genre_id'];
-						        foreach($product->getSingleGenProduct($genre_id) as $listNew){ ?>
+						        foreach($product->listSingleGensProductS($genre_id) as $listNew){ ?>
                                     <div class="product product-style-2 equal-elem ">
                                         <div class="product-thumnail">
                                             <a href="product_details.php?slug=<?php echo $listNew['slug']; ?>" title="<?php echo $listNew['product_name'] ?>">

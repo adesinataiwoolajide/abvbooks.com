@@ -36,7 +36,7 @@
 						<div class="card-header"><i class="fa fa-table"></i> List of Saved Products</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table id="example" class="table table-bordered">
+                                <table id="default-datatable" class="table table-bordered">
 									<thead>
 										<tr>
                                             <th>S/N</th>
@@ -63,8 +63,8 @@
 											$product_name=$listProduct['product_name'] ?>
 											<tr>
 												<td><?php echo $number; ?>
-													<a href="delete-product.php?product_name=<?php echo $product_name ?>&&slug=<?php echo $slug ?>" ><i class="fa fa-trash-o"></i></a>
-                                                    <a href="edit-product.php?product_name=<?php echo $product_name ?>&&slug=<?php echo $slug ?>" ><i class="fa fa-pencil"></i></a>
+													<a href="delete-product.php?product_name=<?php echo $product_name ?>&&slug=<?php echo $slug ?>" onclick="return(confirmToDelete());" ><i class="fa fa-trash-o"></i></a>
+                                                    
                                                     <a href="view-product-details.php?slug=<?php echo $slug ?>" class=""><i class="fa fa-id-badge"></i></a>
                                                 </td>
                                                 <td><?php echo $product_name ?></td>
@@ -72,7 +72,7 @@
                                                 style="width: 50; height: 50px;" alt="<?php echo $product_name ?>"></td>
                                                 
                                                 <td><?php echo number_format($listProduct['quantity']) ?></td>
-												<td><?php echo number_format($listProduct['amount']); ?></td>
+												<td>&#8358;<?php echo number_format($listProduct['amount']); ?></td>
 											</tr><?php
 											$number++; 
 										}?>

@@ -36,12 +36,12 @@
 			
         }
         
-        public function updateCategory()
+        public function updateCategory($category_name, $category_id)
 		{
 			$db = Database::getInstance()->getConnection();
 			$query = $db->prepare("UPDATE products_category SET category_name=:category_name WHERE category_id=:category_id ");
-            $query->bindValue(":category_name", $this->category_name);
-            $query->bindValue(":category_id", $this->category_id);
+            $query->bindValue(":category_name", $category_name);
+            $query->bindValue(":category_id", $category_id);
 			if($query->execute()){
 				return true;
 			}else{
@@ -71,13 +71,22 @@
 			return $query->fetchAll(PDO::FETCH_ASSOC);
         }
         
-        public function getSingleCategory()
+        public function getSingleCategory($category_id)
 		{
 			$db = Database::getInstance()->getConnection();
             $query = $db->prepare("SELECT * FROM products_category WHERE category_id=:category_id");
             $query->bindValue(":category_id", $category_id);
 			$query->execute();
 			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function getSingleCategoryList($category_id)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM products_category WHERE category_id=:category_id");
+            $query->bindValue(":category_id", $category_id);
+			$query->execute();
+			return $query->fetch();
 		}
     }
 

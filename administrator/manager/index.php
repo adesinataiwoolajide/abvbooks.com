@@ -4,6 +4,8 @@
     $type = new Type;
     $genre = new Genre;
     $publisher = new Publisher;
+    $product = new Product;
+    $order = new Order;
 ?>
 <div class="clearfix"></div>
 	
@@ -16,7 +18,7 @@
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body text-left">
-                                    <h4 class="mb-0 text-white">0</h4>
+                                    <h4 class="mb-0 text-white">&#8358;<?php echo number_format($product->sumAllProduct()); ?></h4>
                                     <span class="text-white">Total <br>Assets</span>
                                 </div>
                                 <div class="align-self-center w-icon">
@@ -33,7 +35,7 @@
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body text-left">
-                                    <h4 class="mb-0 text-white">0</h4>
+                                    <h4 class="mb-0 text-white"><?php echo count($product->seeAllPubProduct()); ?></h4>
                                     <span class="text-white">Published Products</span>
                                 </div>
                                 <div class="align-self-center w-icon">
@@ -50,8 +52,8 @@
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body text-left">
-                                    <h4 class="mb-0 text-white">0</h4>
-                                    <span class="text-white">Published Products</span>
+                                    <h4 class="mb-0 text-white"><?php echo count($product->seeAllUnPubProduct()); ?></h4>
+                                    <span class="text-white">UnPublished Products</span>
                                 </div>
                                 <div class="align-self-center w-icon">
                                     <i class="icon-pie-chart text-white"></i></div>
@@ -67,7 +69,7 @@
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body text-left">
-                                    <h4 class="mb-0 text-white">0</h4>
+                                    <h4 class="mb-0 text-white"><?php echo count($order->getAllOrders()) ?></h4>
                                     <span class="text-white">New <br> Orders</span>
                                 </div>
                                 <div class="align-self-center w-icon">
@@ -139,6 +141,23 @@
                         <div class="media d-flex">
                             <div class="media-body">
                                 <span class="text-white">Total Genres</span>
+                                <h3 class="text-white"><?php echo  count($genre->getAllGenre()); ?></h3>
+                            </div>
+                            <div class="w-icon">
+                                <i class="ti-stats-up text-white"></i>
+                            </div>
+                        </div>
+                        <div id="widget-chart-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 col-xl-3">
+                <div class="card gradient-forest">
+                    <div class="card-body">
+                        <div class="media d-flex">
+                            <div class="media-body">
+                                <span class="text-white">Total Customer</span>
                                 <h3 class="text-white"><?php echo  count($genre->getAllGenre()); ?></h3>
                             </div>
                             <div class="w-icon">

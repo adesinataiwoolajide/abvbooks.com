@@ -36,12 +36,12 @@
 			
         }
         
-        public function updateAuthor()
+        public function updateAuthor($author_id, $author_name)
 		{
 			$db = Database::getInstance()->getConnection();
 			$query = $db->prepare("UPDATE authors SET author_name=:author_name WHERE author_id=:author_id ");
-            $query->bindValue(":author_name", $this->author_name);
-            $query->bindValue(":author_id", $this->author_id);
+            $query->bindValue(":author_name", $author_name);
+            $query->bindValue(":author_id", $author_id);
 			if($query->execute()){
 				return true;
 			}else{
@@ -72,13 +72,22 @@
 			return $fetch;
         }
         
-        public function getSingleAuthor()
+        public function getSingleAuthor($author_id)
 		{
 			$db = Database::getInstance()->getConnection();
             $query = $db->prepare("SELECT * FROM authors WHERE author_id=:author_id");
             $query->bindValue(":author_id", $author_id);
 			$query->execute();
 			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		public function getSingleAuthorList($author_id)
+		{
+			$db = Database::getInstance()->getConnection();
+            $query = $db->prepare("SELECT * FROM authors WHERE author_id=:author_id");
+            $query->bindValue(":author_id", $author_id);
+			$query->execute();
+			return $query->fetch();
 		}
     }
 

@@ -134,64 +134,48 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                    <div class=" main-content-area">
 
-                    <div class="wrap-iten-in-cart">
-                       
+                    
 
-                        <div class="summary">
-                            <div class="order-summary">
-                                <h4 class="title-box">Order Summary</h4>
-                                <p class="summary-info"><span class="title">Subtotal</span><b class="index">$512.00</b></p>
-                                <p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
-                                <p class="summary-info total-info "><span class="title">Total</span><b class="index">$512.00</b></p>
+                        <div class="widget widget-our-services ">
+                            <div class="widget-content">
+                                <ul class="our-services">
+
+                                    <li class="service">
+                                        <a class="link-to-service" href="#">
+                                            <i class="fa fa-truck" aria-hidden="true"></i>
+                                            <div class="right-content">
+                                                <b class="title">Free Shipping</b>
+                                                <span class="subtitle">On Order Over 20009</span>
+                                                <p class="desc"></p>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="service">
+                                        <a class="link-to-service" href="#">
+                                            <i class="fa fa-gift" aria-hidden="true"></i>
+                                            <div class="right-content">
+                                                <b class="title">Special Offer</b>
+                                                <span class="subtitle">Get a gift!</span>
+                                                <p class="desc">On Order Above 30000</p>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="service">
+                                        <a class="link-to-service" href="#">
+                                            <i class="fa fa-reply" aria-hidden="true"></i>
+                                            <div class="right-content">
+                                                <b class="title">Order Return</b>
+                                                <span class="subtitle">Return within 7 days</span>
+                                                <p class="desc"></p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="checkout-info">
-                                
-                                <a class="btn btn-checkout" href="check-out.php">Check out</a>
-                                <a class="link-to-shop" href="list_shop.php">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
-                            </div>
-                            
-                        </div>
+                        </div><!-- Categories widget-->
                     </div>
-
-                    <div class="widget widget-our-services ">
-                        <div class="widget-content">
-                            <ul class="our-services">
-
-                                <li class="service">
-                                    <a class="link-to-service" href="#">
-                                        <i class="fa fa-truck" aria-hidden="true"></i>
-                                        <div class="right-content">
-                                            <b class="title">Free Shipping</b>
-                                            <span class="subtitle">On Order Over 20009</span>
-                                            <p class="desc"></p>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="service">
-                                    <a class="link-to-service" href="#">
-                                        <i class="fa fa-gift" aria-hidden="true"></i>
-                                        <div class="right-content">
-                                            <b class="title">Special Offer</b>
-                                            <span class="subtitle">Get a gift!</span>
-                                            <p class="desc">On Order Above 30000</p>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="service">
-                                    <a class="link-to-service" href="#">
-                                        <i class="fa fa-reply" aria-hidden="true"></i>
-                                        <div class="right-content">
-                                            <b class="title">Order Return</b>
-                                            <span class="subtitle">Return within 7 days</span>
-                                            <p class="desc"></p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- Categories widget-->
                 </div><!--end sitebar-->
             </div>
         </div><!--end main products area-->

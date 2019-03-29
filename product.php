@@ -157,7 +157,7 @@
 	</div>
 	<div class="wrap-top-banner">
 		<a href="#" class="link-banner banner-effect-2">
-			<figure><img src="assets/images/banner/arts.jpg" width="1170" height="40" alt=""></figure>
+			<figure><img src="assets/images/stationary.jpg" style="width: 1170px; height: 350px"  alt=""></figure>
 		</a>
 	</div>
 </div>

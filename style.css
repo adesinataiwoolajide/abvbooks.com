@@ -53,7 +53,7 @@ Primary use:    Ecommerce
 body{
 	font-family: 'Open Sans', sans-serif;
 	font-size: 13px;
-	color: #444444;
+	color: red;
 	overflow-x: hidden;
 }
 img{
@@ -720,7 +720,7 @@ li.menu-item .nav-label.sale-label::before{
 	background: transparent;
 }
 .header-style-1 .primary-nav-section{
-	background: #444444;
+	background: #FF2832;
 }
 .primary{
 	position: relative;
@@ -728,18 +728,18 @@ li.menu-item .nav-label.sale-label::before{
 .primary-nav-section .primary>.menu-item{
 	display: block;
 	float: left;
-	position: static;
+	/* position: ; */
 }
 .primary .menu-item.home-icon i{
 	font-size: 19px;
-	color: #ffffff;
+	color: white;
 }
 .primary .menu-item.home-icon>a{
 	padding: 10px 20px;
 }
 .primary>.menu-item:not(.home-icon)>a{
 	font-weight: 700;
-	color: #f1f1f1;
+	color: white;
 	text-transform: uppercase;
 	padding: 11px 23px;
 }
@@ -790,7 +790,7 @@ li.menu-item .nav-label.sale-label::before{
 	-webkit-box-shadow: 0 0 9px 0 #ececec;
 	-moz-box-shadow: 0 0 9px 0 #ececec;
     z-index: 100;
-    background-color: #fff;
+    background-color: WHITE;
 }
 .primary .menu-item.menu-item-has-children:hover .wrap-megamenu{
 	opacity: 1;

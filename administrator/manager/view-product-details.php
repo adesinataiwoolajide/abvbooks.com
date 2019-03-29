@@ -6,6 +6,7 @@
     $publisher = new Publisher;
     $category = new Category;
     $product = new Product;
+    $weight = new Weight;
 
     $slug = $_GET['slug'];
     $details = $product->getSingleProduct($slug);
@@ -194,7 +195,7 @@
                                         <tbody>                                    
                                             <tr>
                                                 <td>Amount</td  >
-                                                <td><?php echo $details['amount'] ?></td>
+                                                <td>&#8358;<?php echo number_format($details['amount'] )?></td>
                                             </tr>
                                         </tbody>
                                         <tbody>                                    
@@ -228,9 +229,10 @@
                                 <?php 
                                 $product_name = $details['product_name'];
                                 $category_id = $details['category_id'];
-                                $publisher_id = $details['publisher_id'];
+                                $publisher_id = $details['publisher_id'];;
+                                $genre_id = $details['genre_id'];
                                 $edition = $details['edition'];
-                                $stock = $product->getProductSingleStock($product_name, $publisher_id, $category_id); ?>
+                                $stock = $product->getsProductStock($product_name, $category_id, $genre_id, $publisher_id, $edition); ?>
                                 <div class="col-12 col-lg-6 col-xl-4">
                                     <div class="card gradient-army">
                                         <div class="card-body">
@@ -307,10 +309,10 @@
                             
                         </div>
                         <div class="tab-pane" id="edit">
-                            <form action="process-update-product.php" method="POST" enctype="multipart/form-data">
+                            <form action="update-product.php" method="POST" enctype="multipart/form-data">
                                 <div class="form-group row ">
                                     <div class="col-sm-6">
-                                        <label for="input-6">Product Image </label>
+                                        <label for="input-6">Change Image </label>
                                         <input type="file" class="form-control form-control-rounded" name="image" 
                                         >
                                         <span style="color: red">** This Field is Optional **</span>     
@@ -322,8 +324,22 @@
                                         placeholder="Enter The Product Name" value="<?php echo $details['product_name']; ?>">
                                         <span style="color: red">** This Field is Required **</span>     
                                     </div>
+                                    <div class="col-sm-6">
+                                        <label for="input-6">Category Name </label><?php 
+                                        $category_id = $details['category_id']; $cate = $category->getSingleCategoryList($category_id);?>
+                                        <select class="form-control form-control-rounded" name="category_id" required>
+                                            <option value="<?php echo $category_id ?>"><?php echo $cate['category_name'] ?></option>
+                                            <option value=""></option><?php
+                                            foreach ($category->getAllCategory() as $listType) { ?>
+                                                <option value="<?php echo $listType['category_id'] ?>">
+                                                    <?php echo $listType['category_name'] ?>	
+                                                </option><?php
+                                            } ?>
+                                        </select>
+                                        <span style="color: red">** This Field is Required **</span>     
+                                    </div>
 
-                                    
+
                                     <div class="col-sm-6">
                                         <label for="input-6">Product Type </label>
                                         <select class="form-control form-control-rounded" name="type_id" id="" required onchange="showGenre(this.value)" required>>
@@ -331,10 +347,7 @@
                                             $see = $genre->getSingleGenreType($genre_id);
                                             $type_id = $see['type_id'];
                                             $name = $type->getSingleBookType($type_id);
-                                            $type_name = $name['type_name'];
-                                            
-                                            
-                                            ?>
+                                            $type_name = $name['type_name'];?>
                                             <option value="<?php echo $type_id ?>"><?php echo $type_name ?></option>
                                             <option value=""></option><?php
                                             foreach ($type->getAllProductType() as $listType) { ?>
@@ -347,32 +360,42 @@
                                     </div>
 
                                     <div class="col-sm-6" id="txtHint2">
-                                        <label for="input-6">Genre Name </label>
+                                        <label for="input-6">Sub Type Name </label>
                                         <select class="form-control form-control-rounded" name="genre_id" id="" required>
                                             <option value="<?php echo $see['genre_id'] ?>"><?php echo $see['genre_name'] ?></option>
                                         </select>
                                         <span style="color: green">** This Field is Autoload **</span>  
                                     </div>
-                                    
-
+                                    <?php $weight_id = $details['weight_id']; 
+                                        $deel = $weight->getSingleBookWeight($weight_id); ?>
                                     <div class="col-sm-6">
-                                        <label for="input-6">Category Name </label>
-                                        <select class="form-control form-control-rounded" name="category_id" required>
-                                            <option value="">-- Select Category --</option>
-                                            <option value=""></option><?php
-                                            foreach ($category->getAllCategory() as $listType) { ?>
-                                                <option value="<?php echo $listType['category_id'] ?>">
-                                                    <?php echo $listType['category_name'] ?>	
-                                                </option><?php
-                                            } ?>
+                                        <label for="input-6">Product Weight </label>
+                                        <select class="form-control form-control-rounded" name="weight_name" id="" required onchange="showAmount(this.value)" required>
+                                            
+                                            <option value="<?php echo $weight_id ?>"><?php echo $deel['weight_name'] ?></option>
+                                            <option value=""></option>
+                                            <?php foreach($weight->getAllProductWeight() as $roll) { ?>
+                                                <option value="<?php echo $roll['weight_id'] ?>"><?php echo $roll['weight_name']; ?></option>
+                                            <?php } ?>
                                         </select>
                                         <span style="color: red">** This Field is Required **</span>     
                                     </div>
+								
+                                    <div class="col-sm-6" id="txtHint3">
+                                        <label for="input-6">Weight Amount </label>
+                                        <select class="form-control form-control-rounded" name="weight_id" required>
+                                            <option value="<?php echo $weight_id ?>"><?php echo $deel['amount'] ?></option>
+                                        </select>
+                                        <span style="color: green">** This Field is Autoload **</span>  
+                                    </div>
 
+                                    
                                     <div class="col-sm-6">
                                         <label for="input-6">Supplier Name </label>
-                                        <select class="form-control form-control-rounded" name="author_id" required>
-                                            <option value="">-- Select Author --</option>
+                                        <select class="form-control form-control-rounded" name="author_id" required><?php
+                                            $author_id = $details['author_id'];
+                                            $hello = $author->getSingleAuthorList($author_id); ?>
+                                            <option value="<?php echo $author_id ?>"><?php echo $hello['author_name'] ?></option>
                                             <option value=""></option><?php
                                             foreach ($author->getAllAuthor() as $listType) { ?>
                                                 <option value="<?php echo $listType['author_id'] ?>">
@@ -385,8 +408,12 @@
 
                                     <div class="col-sm-6">
                                         <label for="input-6">Manufacturer Name </label>
-                                        <select class="form-control form-control-rounded" name="publisher_id" required>
-                                            <option value="">-- Select Publisher --</option>
+                                        <select class="form-control form-control-rounded" name="publisher_id" required><?php
+                                            $publisher_id = $details['publisher_id'];
+                                            $hel = $publisher->getSinglePublisherList($publisher_id); ?>
+                                            <option value="<?php echo $publisher_id ?>">
+                                            <?php echo $hel['publisher_name']; ?></option>
+                                            
                                             <option value=""></option><?php
                                             foreach ($publisher->getAllPublisher() as $listType) { ?>
                                                 <option value="<?php echo $listType['publisher_id'] ?>">
@@ -488,6 +515,28 @@
 		        }
 		    };
 		    xmlhttp.open("GET","load_new.php?genre_id="+str,true);
+		    xmlhttp.send();
+		}
+	}
+
+	function showAmount(str) {
+		if (str == "") {
+		    document.getElementById("txtHint3").innerHTML = "";
+		    return;
+		} else { 
+		    if (window.XMLHttpRequest) {
+		        // code for IE7+, Firefox, Chrome, Opera, Safari
+		        xmlhttp = new XMLHttpRequest();
+		    } else {
+		        // code for IE6, IE5
+		        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    xmlhttp.onreadystatechange = function() {
+		        if (this.readyState == 4 && this.status == 200) {
+		            document.getElementById("txtHint3").innerHTML = this.responseText;
+		        }
+		    };
+		    xmlhttp.open("GET","load_amount.php?weight_id="+str,true);
 		    xmlhttp.send();
 		}
 	}
